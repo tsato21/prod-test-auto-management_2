@@ -15,31 +15,28 @@
 
 ## 2 セットアップ
 
-***⭐️ [prod-test-auto-management_1のREADME](https://github.com/tsato21/prod-test-auto-management_1)と異なる部分のみ、記載。(XXX)は当該READMEのセクションを示している。***
+***⭐️ [prod-test-auto-management_1のREADME](https://github.com/tsato21/prod-test-auto-management_1)と異なる部分のみ、記載。***
 
 
-- ローカルリポジトリの構成を以下の構成に設定する。(2 セットアップ > 2)
+- ローカルリポジトリの構成を以下の構成に設定する。([prod-test-auto-management_1のREADME](https://github.com/tsato21/prod-test-auto-management_1) >`2 セットアップ` > `2`)
     ```
-    リポジトリ
-    ├─ プロジェクト1/
+    ./
+    ├─ project_1/
     │  └─ src/
     │  │  ├─ appsscript.json
-    │  │  └─ コード.gs
+    │  │  └─ Code.gs
     │  └─ .clasp.json
-    ├─ プロジェクト2/
+    ├─ project_2/
     │  └─ src/
     │  │  ├─ appsscript.json
-    │  │  └─ コード.gs
-    │  └─ .clasp.json
-    ├─ プロジェクト3/
-    │  └─ src/
-    │  │  ├─ appsscript.json
-    │  │  └─ コード.gs
+    │  │  └─ Code.gs
     │  └─ .clasp.json
     ```
 
-- Repository Secretを設定。(2 セットアップ > 8)
-  - CLASP_SCRIPT_IDの設定は不要。
+
+- Repository Secretを設定。([prod-test-auto-management_1のREADME](https://github.com/tsato21/prod-test-auto-management_1) > `2 セットアップ` > `8`)
+  - ***`CLASP_SCRIPT_ID`***以外を設定。***`CLASP_SCRIPT_ID`***の設定は不要。
+
 
 - `deploy.yml`ファイルで各プロジェクト(***本番環境***)のフォルダ名、IDを以下のように記載。
     ```
@@ -54,9 +51,9 @@
     strategy:
       matrix:
         projects:
-          - target-dir: 'プロジェクト1'
+          - target-dir: 'project_1'
             script-id: ${{ secrets.PROJECT_1_CLASP_SCRIPT_ID }}
-          - target-dir: 'プロジェクト2'
+          - target-dir: 'project_2'
             script-id: ${{ secrets.PROJECT_2_CLASP_SCRIPT_ID }}
     ```
 
@@ -65,11 +62,11 @@
 
 ***⭐️ [prod-test-auto-management_1のREADME](https://github.com/tsato21/prod-test-auto-management_1)と異なる部分のみ、記載。(XXX)は当該READMEのセクションを示している。***
 
-- ***全てのプロジェクト***のテスト環境用ファイルを最新の状態にする。(3 使用方法 > 1)
+- ***全てのプロジェクト***のテスト環境用ファイルを最新の状態にする。([prod-test-auto-management_1のREADME](https://github.com/tsato21/prod-test-auto-management_1) > `3 使用方法` > `1`)
   - 各プロジェクト内で作業する際は、`cd project_1`のように、当該プロジェクトに移動してから作業。
   - 別プロジェクトや、Githubへのpush作業時は、`cd ..`でrootフォルダに戻る。
 
-- Commit & タグ付け & Pushで、***全てのプロジェクト***の本番環境用ファイルが最新の状態 & Versionが更新される。(3 使用方法 > 2)
+- Commit & タグ付け & Pushで、***全てのプロジェクト***の本番環境用ファイルが最新の状態 & Versionが更新される。([prod-test-auto-management_1のREADME](https://github.com/tsato21/prod-test-auto-management_1) > `3 使用方法` > `2`)
 
 
 ## 4 参考文献
