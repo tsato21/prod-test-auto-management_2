@@ -12,11 +12,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        projects:  # プロジェクトが増えたらここに追記していく
-          - target-dir: 'sample_1'
-            script-id: '1h6I3uHp26m63_UB7h2tIbHAtxhYbGkWC72wypGsS59oPmDaSNifWHWlD'
-          - target-dir: 'sample_2'
-            script-id: '1b7Svxb98tOT6VPlgzfgy5PMYkQR0I8DZQ6fgDgP_kfjhE1conGapaPAD'
+        projects:
+          - target-dir: 'project_1'
+            script-id: '1GihleeOYuEkbNKW9C2upDxH-HV9Ga1wyFgmbTmFgLKnWBYaVj2u38c_L'
+          - target-dir: 'project_2'
+            script-id: '1jM7z07ym3y_j7neAnlgHwiXGSbAExwHJkemk5eQV5xW_2V2Y_2iccjwb'
 
     env:
       RELEASE_CLASPRC_ACCESS_TOKEN: ${{ secrets.RELEASE_CLASPRC_ACCESS_TOKEN }}
@@ -67,17 +67,6 @@ jobs:
           EOS
           ) > ~/.clasprc.json
 
-      # - name: Create ~/.clasp.json
-      #   # .clasp.jsonをGit管理対象としているなら、ここは不要。
-      #   run: |
-      #     echo $(cat <<-EOS
-      #     {
-      #       "scriptId": "${RELEASE_CLASP_SCRIPT_ID}",
-      #       "rootDir": "./src"
-      #     }
-      #     EOS
-      #     ) > ./.clasp.json
-
       - name: Create ./.clasp.json
         working-directory: ./${{ matrix.projects.target-dir }}
         run: |
@@ -89,35 +78,14 @@ jobs:
           EOS
           ) > ./.clasp.json
 
-      - name: Print .clasp.json contents and location
-        working-directory: ./${{ matrix.projects.target-dir }}
-        run: |
-          echo "Location of .clasp.json:"
-          pwd
-          echo "Contents of .clasp.json:"
-          cat .clasp.json
-
       - name: Get version
         id: get_version
         run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> "$GITHUB_OUTPUT"
 
-      - name: List directory contents
-        working-directory: ./${{ matrix.projects.target-dir }}
-        run: ls -la
-
-      - name: Print file contents
-        working-directory: ./${{ matrix.projects.target-dir }}
-        run: |
-          for file in *; do
-            echo "Contents of $file:"
-            cat "$file" || echo "Failed to print contents of $file"
-            echo
-          done
-
       - name: Upload files
-        working-directory: ./${{ matrix.projects.target-dir }} # `working-directory`指定
+        working-directory: ./${{ matrix.projects.target-dir }}
         run: npx @google/clasp push --force
 
       - name: Deploy
-        working-directory: ./${{ matrix.projects.target-dir }} # `working-directory`指定
+        working-directory: ./${{ matrix.projects.target-dir }}
         run: npx @google/clasp deploy -d ${{ steps.get_version.outputs.VERSION }}
