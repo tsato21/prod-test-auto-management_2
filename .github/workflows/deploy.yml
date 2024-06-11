@@ -14,9 +14,9 @@ jobs:
       matrix:
         projects:
           - target-dir: 'project_1'
-            script-id: '1GihleeOYuEkbNKW9C2upDxH-HV9Ga1wyFgmbTmFgLKnWBYaVj2u38c_L'
-          - target-dir: 'project_2'
             script-id: '1jM7z07ym3y_j7neAnlgHwiXGSbAExwHJkemk5eQV5xW_2V2Y_2iccjwb'
+          - target-dir: 'project_2'
+            script-id: '1GihleeOYuEkbNKW9C2upDxH-HV9Ga1wyFgmbTmFgLKnWBYaVj2u38c_L'
 
     env:
       RELEASE_CLASPRC_ACCESS_TOKEN: ${{ secrets.RELEASE_CLASPRC_ACCESS_TOKEN }}
