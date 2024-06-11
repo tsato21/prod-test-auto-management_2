@@ -1,3 +1,3 @@
-function myFunction() {
-  console.log("Hello, world");
+function testForProject1() {
+  console.log("This is a project 1.");
 }
