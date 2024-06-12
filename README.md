@@ -35,7 +35,7 @@
 
 
 - Repository Secretを設定。([prod-test-auto-management_1のREADME](https://github.com/tsato21/prod-test-auto-management_1) > `2 セットアップ` > `8`)
-  - ***`CLASP_SCRIPT_ID`***以外を設定。***`CLASP_SCRIPT_ID`***の設定は不要。
+  - ***`CLASP_SCRIPT_ID`は、deploy.ymlに直接記載するため、設定不要。それ以外のsecretを設定。***
 
 
 - `deploy.yml`ファイルで各プロジェクト(***本番環境***)のフォルダ名、IDを以下のように記載。
