@@ -14,9 +14,9 @@ jobs:
       matrix:
         projects:
           - target-dir: "project_1"
-            script-id: ${{ secrets.PROJECT1_CLASP_SCRIPT_ID }}
+            script-id-key: "PROJECT1_CLASP_SCRIPT_ID"
           - target-dir: "project_2"
-            script-id: ${{ secrets.PROJECT2_CLASP_SCRIPT_ID }}
+            script-id-key: "PROJECT2_CLASP_SCRIPT_ID"
 
     env:
       RELEASE_CLASPRC_ACCESS_TOKEN: ${{ secrets.RELEASE_CLASPRC_ACCESS_TOKEN }}
@@ -72,7 +72,7 @@ jobs:
         run: |
           echo $(cat <<-EOS
           {
-            "scriptId": "${{ matrix.projects.script-id }}",
+            "scriptId": "${{ secrets[matrix.projects.script-id-key] }}",
             "rootDir": "./src"
           }
           EOS
