@@ -3,7 +3,7 @@ name: Deploy
 on:
   push:
     tags:
-      - "v*"
+      - 'v*'
 
 permissions: read-all
 
@@ -13,10 +13,10 @@ jobs:
     strategy:
       matrix:
         projects:
-          - target-dir: "project_1"
-            script-id-key: "PROJECT1_CLASP_SCRIPT_ID"
-          - target-dir: "project_2"
-            script-id-key: "PROJECT2_CLASP_SCRIPT_ID"
+          - target-dir: 'project_1'
+            script-id-key: 'PROJECT1_CLASP_SCRIPT_ID'
+          - target-dir: 'project_2'
+            script-id-key: 'PROJECT2_CLASP_SCRIPT_ID'
 
     env:
       RELEASE_CLASPRC_ACCESS_TOKEN: ${{ secrets.RELEASE_CLASPRC_ACCESS_TOKEN }}
@@ -31,7 +31,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: '20'
 
       - name: Cache node modules
         uses: actions/cache@v4.0.0
