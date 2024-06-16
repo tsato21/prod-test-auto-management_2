@@ -14,9 +14,9 @@ jobs:
       matrix:
         projects:
           - target-dir: 'project_1'
-            script-id-key: 'PROJECT1_CLASP_SCRIPT_ID'
+            script-id-key: 'RELEASE_PROJECT1_CLASP_SCRIPT_ID'
           - target-dir: 'project_2'
-            script-id-key: 'PROJECT2_CLASP_SCRIPT_ID'
+            script-id-key: 'RELEASE_PROJECT2_CLASP_SCRIPT_ID'
 
     env:
       RELEASE_CLASPRC_ACCESS_TOKEN: ${{ secrets.RELEASE_CLASPRC_ACCESS_TOKEN }}
