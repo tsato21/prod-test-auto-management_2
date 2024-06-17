@@ -35,27 +35,20 @@
 
 
 - Repository Secretを設定。([prod-test-auto-management_1のREADME](https://github.com/tsato21/prod-test-auto-management_1) > `2 セットアップ` > `8`)
-  - ***`CLASP_SCRIPT_ID`は、deploy.ymlに直接記載するため、設定不要。それ以外のsecretを設定。***
+  - ***`CLASP_SCRIPT_ID`は、各プロジェクトごとに記載。(例: `RELEASE_PROJECT1_CLASP_SCRIPT_ID`)***
 
 
-- `deploy.yml`ファイルで各プロジェクト(***本番環境***)のフォルダ名、IDを以下のように記載。
-    ```
-    projects:
-        - target-dir: 'project_1'
-        script-id: 'XXXX'
-        - target-dir: 'project_2'
-        script-id: 'XXXX'
-    ```
-    - [prod-test-auto-management_1のREADME](https://github.com/tsato21/prod-test-auto-management_1)と同様、本番環境のScript IDをGithub ActionsのSecretとして下記のように設定しようとしたが、matrix内では、`secrets`が使用できない ([参考サイト](https://github.com/orgs/community/discussions/26302))。そのため、ファイル内に直で記載。(***ただし、Scripit IDを非公開にする必要がある場合は、当該箇所の修正が必要。***)
+- `deploy.yml`ファイルで各プロジェクト(***本番環境***)のフォルダ名、IDを以下のように記載。([prod-test-auto-management_1のREADME](https://github.com/tsato21/prod-test-auto-management_1) > `2 セットアップ` > `9`)
     ```
     strategy:
       matrix:
         projects:
           - target-dir: 'project_1'
-            script-id: ${{ secrets.PROJECT_1_CLASP_SCRIPT_ID }}
+            script-id-key: 'RELEASE_PROJECT1_CLASP_SCRIPT_ID'
           - target-dir: 'project_2'
-            script-id: ${{ secrets.PROJECT_2_CLASP_SCRIPT_ID }}
+            script-id-key: 'RELEASE_PROJECT2_CLASP_SCRIPT_ID'
     ```
+    - `matrix`を使用して、各プロジェクトごとにjobを走らせる仕様。
 
 
 ## 3 使用方法
